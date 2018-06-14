@@ -1,8 +1,8 @@
 % % Esta funcao emprega algoritmos geneticos para 
 % % resolver o problema de alocacao de containeres
 % % em navios.
-% NOVIDADE:::::::  TODOS OS CONTÊINERES DO PATIO SAO RETIRADOS
-% % Navio  % matriz de ocupacao B, do navio. É uma matriz de zeros
+% NOVIDADE:::::::  TODOS OS CONTÃŠINERES DO PATIO SAO RETIRADOS
+% % Navio  % matriz de ocupacao B, do navio. Ã‰ uma matriz de zeros
 % % navio  % vetor que guarda a informacao sobre qual eh o navio de destino
 % %          de cada conteiner
 % % porto  % vetor que guarda a informacao sobre qual eh o porto de destino
@@ -13,7 +13,7 @@
 % % ubound % limite superior da quantidade de regras % ubound = 48
 % % TESTE:
 % % [patio,navio,porto,Navio,np] = gera_cenario(7,10,6,4)
-% % [X,fit,tempo]=ga(Navio,navio,porto,patio,4,1,48)
+% % [X,fit,tempo]=ga(Navio,navio,porto,patio,4,1,64)
 
 function [X,fit]=ga(Navio,porto,patio,np,lbound,ubound)
     
@@ -23,8 +23,8 @@ function [X,fit]=ga(Navio,porto,patio,np,lbound,ubound)
 %     myCluster.NumWorkers = 4;  % 'Modified' property now TRUE
 %     saveProfile(myCluster);    % 'local' profile now updated,
 %     parpool(4)
-     % Declaração de valores importantes 
-     % e que serão utilizados ao longo do
+     % DeclaraÃ§Ã£o de valores importantes 
+     % e que serÃ£o utilizados ao longo do
      % programa.
      elapsedtime= tic;
      POPSIZE = 10;       % Pop. Size.
@@ -41,7 +41,7 @@ function [X,fit]=ga(Navio,porto,patio,np,lbound,ubound)
      xrep=zeros(MAXGENS,3);
      ultima_geracao = 0;
           
-     % Chamadas as funções auxiliares.
+     % Chamadas as funÃ§Ãµes auxiliares.
      population = initialize(POPSIZE,NVARS,lbound,ubound);      
      population = evaluate(POPSIZE,population,Navio,porto,patio,MAXGENS,generation); 
      population = keep_the_best(POPSIZE,NVARS,population);
@@ -65,13 +65,13 @@ function [X,fit]=ga(Navio,porto,patio,np,lbound,ubound)
      end
       p = gcp;
       delete(p)
-     % Copiando informações das soluções da última geração
+     % Copiando informaÃ§Ãµes das soluÃ§Ãµes da Ãºltima geraÃ§Ã£o
      % para uma matriz X.
      for i=1:POPSIZE+1
          X(i,:) = population(i).gene;
      end  
      
-     % Copiando a informação de fitness dos individuos para
+     % Copiando a informaÃ§Ã£o de fitness dos individuos para
      % um vetor de fitness.
      for i=1:POPSIZE+1
        fit(i) = (1.0/(population(i).fitness)-1.0);     
